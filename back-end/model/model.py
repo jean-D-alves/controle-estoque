@@ -1,3 +1,4 @@
+
 from sqlalchemy import create_engine, Column, String,Integer
 from sqlalchemy.orm import declarative_base,sessionmaker
 
@@ -50,8 +51,26 @@ def newProdut(nameProd,descripProd,valueProd,quantityProd,author):
 
 def singUp(name,email,password):
     session = Session()
-    user = User(name=name,email=email,password=password)
-    session.add(user)
+    exist = session.query(User).filter(User.email == email).first()
+    msg = "password exist"
+    if not exist:
+        user = User(
+            name=name,
+            email=email,
+            password=password
+        )
+        session.add(user)
+    else:
+        user = msg
     session.commit()
     session.close()
     return user
+def singin(name,password):
+    session = Session()
+    user = session.query(User).filter(User.name == name, User.password == password).first()
+    if user:
+        return {"ID": user.id, "name": user.name }
+    else:
+        return {"user not exist"}
+    return user
+    session.close()
