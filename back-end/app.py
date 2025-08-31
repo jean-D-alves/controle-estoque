@@ -21,9 +21,10 @@ def singup():
         email = response.get('email')
         password = response.get('password')
         user = singUp(name,email,password)
+        session["dataUser"] = {"username": name,"password":password }
         if user:
-            return jsonify({"user": f"{name}"})
-    return jsonify({"user": 'msg'})
+            return jsonify({"msg": f"user {name} registed"})
+    return jsonify({"msg": 'erro'})
 @app.route("/api/singin", methods=["POST"])
 def singin_route():
     response = request.get_json()
@@ -31,19 +32,29 @@ def singin_route():
     password = response.get('password')
     user = singin(name,password)
     if user:
-        return jsonify({"msg": "user registered", "user": user})
+        session["dataUser"] = {"username": name, "password": password}
+        return jsonify({"msg": "user logged", "name": name})
     else:
         return jsonify({"msg": "user not exist"})
+    
+@app.route("/api/profile")
+def profile():
+    datauser = session.get("dataUser")
+    if datauser:
+        return jsonify(datauser)
+    return jsonify({"error": "user not exist"})
 @app.route('/api/new-produt', methods=["POST"])
 def newprodut():
-    user = session.get('user')
+    user = session.get('dataUser')
     response = request.get_json()
     nomeProd = response.get('nomeProd')
     descripProd = response.get('descripProd')
     valueProd = int(response.get('valueProd'))
     quantityProd = int(response.get('quantityProd'))
-    author = user['name']
-    newProdut(nomeProd,descripProd,valueProd,quantityProd,author)
+    author = user['username']
+    mewprodut = newProdut(nomeProd,descripProd,valueProd,quantityProd,author)
+    if newprodut:
+        return jsonify({"msg":f"add item"})
     return jsonify()
 
 if __name__ =="__main__":

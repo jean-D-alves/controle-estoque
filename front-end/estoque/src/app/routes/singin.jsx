@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useUser } from "../components/hooks/useUser";
 
 export default function Singin() {
   const [name, setname] = useState("");
   const [password, setpassword] = useState("");
   const [logado, setlogado] = useState(false);
+  const { user } = useUser();
   async function postsingin(e) {
     e.preventDefault();
     try {
@@ -12,14 +14,14 @@ export default function Singin() {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({
           name: name,
           password: password,
         }),
-        credentials: "include",
       });
       const data = await response.json();
-      if (data.msg === "user registered") {
+      if (data.msg === "user logged") {
         setlogado(true);
       }
     } catch (err) {
@@ -28,7 +30,7 @@ export default function Singin() {
   }
   return (
     <div>
-      {!logado ? (
+      {!user ? (
         <form onSubmit={postsingin}>
           <input
             type="text"

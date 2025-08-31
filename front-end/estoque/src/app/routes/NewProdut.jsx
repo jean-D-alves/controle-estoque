@@ -5,6 +5,7 @@ export default function NewProdut() {
   const [descripProd, setDescripProd] = useState("");
   const [valueProd, setValueProd] = useState("");
   const [quantityProd, setQuantityProd] = useState("");
+  const [add,setadd] = useState(false)
   async function PostProdut(e) {
     e.preventDefault();
     try {
@@ -20,6 +21,10 @@ export default function NewProdut() {
           quantityProd: quantityProd,
         }),
       });
+      const data = await response.json();
+      if(data.msg === "add item"){
+        setadd(true)
+      }
     } catch (err) {
       console.log("erro", err);
     }
@@ -55,6 +60,11 @@ export default function NewProdut() {
           submit
         </button>
       </form>
+      {add ?(
+        <h3>item adicioned</h3>
+      ):(
+        <h3></h3>
+      )}
     </div>
   );
 }

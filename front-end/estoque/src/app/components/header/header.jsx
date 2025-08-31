@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
+import getsingin from "../../routes/singin";
+import { useState } from "react";
+import { useUser } from "../hooks/useUser";
 
 export default function Header() {
-  
+  const { user } = useUser()
+  getsingin();
   return (
     <div>
       <header>
@@ -15,8 +19,18 @@ export default function Header() {
             </li>
           </ul>
         </nav>
-        <button><Link to={"/login/singup"}>register</Link></button>
-        <button><Link to={"/login/singin"}>Login</Link></button>
+        {!user ? (
+          <>
+            <button>
+              <Link to={"/login/singup"}>register</Link>
+            </button>
+            <button>
+              <Link to={"/login/singin"}>Login</Link>
+            </button>
+          </>
+        ) : (
+          <h1></h1>
+        )}
       </header>
     </div>
   );
