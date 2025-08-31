@@ -15,8 +15,8 @@ export default function Header() {
             </li>
           </ul>
         </nav>
-        <button><Link to={"/login/singup"}>singup</Link></button>
-        <button><Link>singin</Link></button>
+        <button><Link to={"/login/singup"}>register</Link></button>
+        <button><Link to={"/login/singin"}>Login</Link></button>
       </header>
     </div>
   );

@@ -17,6 +17,7 @@ export default function Singup() {
           email: email,
           password: password,
         }),
+        credentials: "include",
       });
     } catch (err) {
       console.log("erro", err);
