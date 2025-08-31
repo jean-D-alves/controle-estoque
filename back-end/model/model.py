@@ -14,13 +14,44 @@ class Produts(base):
     description = Column(String)
     value = Column(Integer)
     quantity = Column(Integer)
+    author = Column(String)
+
+class User(base):
+    __tablename__ = "User"
+
+    id = Column(Integer,primary_key=True)
+    name = Column(String)
+    email = Column(String)
+    password = Column(String)
+
 
 base.metadata.create_all(engine)
 
-def newProdut(nameProd,descripProd,valueProd,quantityProd):
+def newProdut(nameProd,descripProd,valueProd,quantityProd,author):
     session = Session()
-    produt = Produts(name=nameProd,description=descripProd,value=valueProd,quantity=quantityProd)
-    session.add(produt)
+    exist = session.query(Produts).filter(Produts.name == nameProd, Produts.author== author).first()
+    if not exist:
+        produt = Produts(
+            name=nameProd,
+            description=descripProd,
+            value=valueProd,
+            quantity=quantityProd,
+            author=author
+        )
+        session.add(produt)
+    else:
+        exist.quantity += quantityProd
+        exist.description = descripProd
+        exist.value = valueProd
+        produt = exist
     session.commit()
     session.close()
     return produt
+
+def singUp(name,email,password):
+    session = Session()
+    user = User(name=name,email=email,password=password)
+    session.add(user)
+    session.commit()
+    session.close()
+    return user
