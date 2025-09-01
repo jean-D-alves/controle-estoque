@@ -1,0 +1,72 @@
+header {
+  display: flex;
+  background-color: #01003e;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 10px;
+}
+#titleHeader{
+    color: #ffffff;
+}
+ul {
+  display: flex;
+  gap: 10px;
+  list-style-type: none;
+  align-items: center;
+}
+@keyframes animeText{
+    0%,100%{background-color: #0a0950;border-color: #b1b1f3;}
+    60%{background-color: #353390;border-color: #0a0950;}
+}
+.routesHeader {
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #740d6d;
+  padding: 5px;
+  border-radius: 10px;
+  transition: background-color 0.3s, padding 0.3s, border-radius 0.3s ease;
+}
+.routesHeader:hover {
+  padding: 10px;
+  border: 2px solid;
+  border-radius: 20px;
+  animation: animeText 1s infinite;
+}
+@keyframes border {
+  0%,
+  100% {
+    border-color: #b1b1f3;
+  }
+  50% {
+    border-color: #111065;
+  }
+}
+.btnHeader {
+  background-color: #b1b1f3;
+  border: 1px solid #111065;
+  border-radius: 15px;
+  width: 70px;
+  height: 30px;
+  transition: background-color 0.3s, width 0.3s, height 0.3s ease;
+}
+.btnHeader:hover {
+  background-color: #111065;
+  width: 80px;
+  border: 3px solid #111065;
+  height: 40px;
+  animation: border 1s infinite;
+  border-radius: 30px;
+}
+.buttonHeader {
+  text-decoration: none;
+  color: #000000;
+  transition: color 0.3s ease;
+}
+.buttonHeader:hover {
+  font-size: 14px;
+  color: #ffffff;
+}
+#spaceNav{
+  display: flex;
+  align-items: center;
+}

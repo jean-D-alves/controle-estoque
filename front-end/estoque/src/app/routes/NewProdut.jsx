@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./css/newprodut.css"
 
 export default function NewProdut() {
   const [nomeProd, setNomeProd] = useState("");
@@ -30,17 +31,18 @@ export default function NewProdut() {
     }
   }
   return (
-    <div>
-      <form>
+    <div id="mainNewProdut">
+      <form id="formNP">
+        <h1>Add new produt</h1>
         <input
           type="text"
-          placeholder="add name produt"
+          placeholder="add produt name"
           value={nomeProd}
           onChange={(e) => setNomeProd(e.target.value)}
         />
         <input
           type="text"
-          placeholder="add description produt"
+          placeholder="add produt description"
           value={descripProd}
           onChange={(e) => setDescripProd(e.target.value)}
         />
@@ -56,9 +58,7 @@ export default function NewProdut() {
           value={quantityProd}
           onChange={(e) => setQuantityProd(e.target.value)}
         />
-        <button type="submit" onClick={PostProdut}>
-          submit
-        </button>
+        <button className="btn" type="submit" onClick={PostProdut}><strong>submit</strong></button>
       </form>
       {add ?(
         <h3>item adicioned</h3>

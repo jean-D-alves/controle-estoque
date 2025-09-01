@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./css/singup.css"
 
 export default function Singup() {
   const [name, setname] = useState("");
@@ -24,7 +25,7 @@ export default function Singup() {
     }
   }
   return (
-    <div>
+    <div id="mainCenter">
       <form onSubmit={postSingup}>
         <input
           type="text"
@@ -44,7 +45,7 @@ export default function Singup() {
           value={password}
           onChange={(e) => setpassword(e.target.value)}
         />
-        <input type="submit" value={"sing-up"} />
+        <input className="btn" type="submit" value={"sing-up"} />
       </form>
     </div>
   );
