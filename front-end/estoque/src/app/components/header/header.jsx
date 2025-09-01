@@ -24,7 +24,11 @@ export default function Header() {
                   add produt
                 </Link>
               </li>
-
+              <li>
+                <Link to={"/get-stock"} className="routesHeader">
+                  see stock
+                </Link>
+              </li>
               {!user ? (
                 <>
                   <button className="btnHeader">

@@ -2,7 +2,7 @@ from flask import Flask,jsonify,request,session
 from flask_cors import CORS
 from dotenv import load_dotenv
 import os
-from model.model import newProdut,singUp,singin
+from model.model import newProdut,singUp,singin,seeStock
 
 load_dotenv()
 app = Flask(__name__)
@@ -54,8 +54,17 @@ def newprodut():
     author = user['username']
     mewprodut = newProdut(nomeProd,descripProd,valueProd,quantityProd,author)
     if newprodut:
-        return jsonify({"msg":f"add item"})
+        return jsonify({"msg":"add item"})
     return jsonify()
-
+@app.route('/api/see-stock', methods=['POST'])
+def see_stock_route():
+    user = session.get('dataUser')
+    if not user:
+        return jsonify({"msg": "user not logged"})
+    author = user['username']
+    items = seeStock(author) 
+    if not items:
+        return jsonify({"msg": "no items found"})
+    return jsonify(items)
 if __name__ =="__main__":
     app.run(debug=True)

@@ -74,3 +74,22 @@ def singin(name,password):
         return {"user not exist"}
     return user
     session.close()
+
+def seeStock(author):
+    session = Session()
+    produts = session.query(Produts).filter(Produts.author == author).all()
+    session.close()
+    if produts:
+        return [
+            {
+                'id': p.id,
+                "name": p.name,
+                "description": p.description,
+                "value": p.value,
+                "quantity": p.quantity,
+                "author": p.author
+            }
+            for p in produts
+        ]
+    else:
+        return []
