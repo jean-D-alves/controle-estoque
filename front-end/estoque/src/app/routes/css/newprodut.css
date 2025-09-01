@@ -8,5 +8,14 @@
   justify-content: center;
   flex-direction: column;
   width: 70%;
-  gap: 10px;
+}
+@keyframes pulse{
+  0%,50%,100%{border: 1px solid #f3f3f3;}
+  20%,70%{border: 1px solid #ebdaff;}
+}
+#formNP label{
+  background-color: #f3f3f3;
+  padding: 3px;
+  border-radius: 10px;
+  animation: pulse 1s infinite;
 }

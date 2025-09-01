@@ -1,0 +1,9 @@
+#seeStock{
+    display: flex;
+    justify-content: center;
+}
+#divSeeStock{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}

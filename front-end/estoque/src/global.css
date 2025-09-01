@@ -1,17 +1,31 @@
-body{
-    margin: 0;
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
+body {
+  font-family: "Inter", sans-serif;
+  margin: 0;
 }
-form{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+ul {
+  gap: 10px;
+  list-style-type: none;
+  align-items: center;
 }
 input {
   width: 250px;
   height: 30px;
   border: 1px solid #000000;
   border-radius: 10px;
+  transition: width 0.3s,height 0.3s,border-radius 0.3s ease; 
+}
+input:hover{
+  width: 260px;
+  height: 40px;
+  border-radius: 15px;
 }
 .btn {
   margin-inline: 35%;
@@ -20,13 +34,14 @@ input {
   border: 1px solid #04048a;
   border-radius: 10px;
   color: #04048a;
-  transition: margin-top 0.3s, height 0.3s, background 0.3s, border 0.3s, border-radius 0.3s, color 0.3s ease;
+  transition: margin-top 0.3s, height 0.3s, background 0.3s, border 0.3s,
+    border-radius 0.3s, color 0.3s ease;
 }
 .btn:hover {
-    background-color: #04048a;
-    color: #ffffff;
-    margin-top: 5px;
-    height: 35px;
-    border-radius: 20px;
-    border:2px solid #baa9e9;
+  background-color: #04048a;
+  color: #ffffff;
+  margin-top: 5px;
+  height: 35px;
+  border-radius: 20px;
+  border: 2px solid #baa9e9;
 }

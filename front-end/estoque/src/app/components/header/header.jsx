@@ -13,9 +13,9 @@ export default function Header() {
         <h1 id="titleHeader">Stock</h1>
         <section>
           <nav id="spaceNav">
-            <ul>
+            <ul id="ulHeader">
               <li>
-                <Link to={"/home"} className="routesHeader">
+                <Link to={"/"} className="routesHeader">
                   home
                 </Link>
               </li>
@@ -27,6 +27,11 @@ export default function Header() {
               <li>
                 <Link to={"/get-stock"} className="routesHeader">
                   see stock
+                </Link>
+              </li>
+              <li>
+                <Link to={"/delete-produt"} className="routesHeader">
+                  delete produt
                 </Link>
               </li>
               {!user ? (

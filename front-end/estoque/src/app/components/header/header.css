@@ -8,7 +8,7 @@ header {
 #titleHeader{
     color: #ffffff;
 }
-ul {
+#ulHeader{
   display: flex;
   gap: 10px;
   list-style-type: none;

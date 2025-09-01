@@ -2,7 +2,7 @@ from flask import Flask,jsonify,request,session
 from flask_cors import CORS
 from dotenv import load_dotenv
 import os
-from model.model import newProdut,singUp,singin,seeStock
+from model.model import newProdut,singUp,singin,seeStock,deleteProd
 
 load_dotenv()
 app = Flask(__name__)
@@ -66,5 +66,17 @@ def see_stock_route():
     if not items:
         return jsonify({"msg": "no items found"})
     return jsonify(items)
+@app.route('/api/delete', methods=['POST'])
+def delete():
+    user = session.get('dataUser')
+    response = request.get_json()
+    name = response.get("name")
+    quantity = int(response.get("quantity"))
+    author = user["username"]
+    if user:
+        result = deleteProd(name,quantity,author)
+    else:
+        result = ({"user not exist"})
+    return jsonify(result)
 if __name__ =="__main__":
     app.run(debug=True)

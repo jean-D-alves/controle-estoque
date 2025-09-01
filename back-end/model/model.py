@@ -93,3 +93,21 @@ def seeStock(author):
         ]
     else:
         return []
+    
+def deleteProd(name,quantity,author):
+    session = Session()
+    Produt = session.query(Produts).filter(Produts.name == name,Produts.author == author).first()
+    if not Produt:
+        session.close()
+        return({'msg':'produt in user not exist'})
+
+    if Produt.quantity > quantity:
+        Produt.quantity -= quantity
+        session.commit()
+        result = {"msg": f"{quantity} unidade(s) removida(s)", "new_quantity": Produt.quantity}
+    else:
+        session.delete(Produt)
+        session.commit()
+        result = {"msg":"produt delete for all"}
+    session.close()
+    return result
